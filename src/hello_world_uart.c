@@ -209,18 +209,18 @@ main(void)
     //
     // Enable the UART pins.
     //
-    pincfg.uFuncSel = AM_HAL_PIN_22_UART0TX;	
+    pincfg.uFuncSel = AM_HAL_PIN_1_UART0TX;	
 	pincfg.eDriveStrength = AM_HAL_GPIO_PIN_DRIVESTRENGTH_8MA;
-    am_hal_gpio_pinconfig(22, pincfg);
-	pincfg.uFuncSel = AM_HAL_PIN_23_UART0RX;	
-    am_hal_gpio_pinconfig(23, pincfg);
+    am_hal_gpio_pinconfig(1, pincfg);
+	pincfg.uFuncSel = AM_HAL_PIN_2_UART0RX;	
+    am_hal_gpio_pinconfig(2, pincfg);
 
 #ifdef FLOW_CTRL	
-	pincfg.uFuncSel = AM_HAL_PIN_17_UA1CTS;
-	am_hal_gpio_pinconfig(17, pincfg);
-	pincfg.uFuncSel = AM_HAL_PIN_16_UA1RTS;	
+	pincfg.uFuncSel = AM_HAL_PIN_4_UA0CTS;
+	am_hal_gpio_pinconfig(4, pincfg);
+	pincfg.uFuncSel = AM_HAL_PIN_3_UA0RTS;	
 	pincfg.eDriveStrength = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA;
-	am_hal_gpio_pinconfig(16, pincfg);
+	am_hal_gpio_pinconfig(3, pincfg);
 #endif
     //
     // Enable interrupts.
