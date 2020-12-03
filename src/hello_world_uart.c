@@ -79,7 +79,7 @@ const am_hal_uart_config_t g_sUartConfig =
     //
     // Standard UART settings: 115200-8-N-1
     //
-    .ui32BaudRate = 115200*4,
+    .ui32BaudRate = 115200*8,
     .ui32DataBits = AM_HAL_UART_DATA_BITS_8,
     .ui32Parity = AM_HAL_UART_PARITY_NONE,
     .ui32StopBits = AM_HAL_UART_ONE_STOP_BIT,
@@ -180,6 +180,7 @@ main(void)
 {
 	uint32_t ui32NumBytesRead;
 	uint8_t ui8inData[TEMP_BUFF_SIZE];
+	const uint8_t ui8outData='$';
 
 	am_hal_gpio_pincfg_t pincfg = {0};
 
@@ -241,6 +242,9 @@ main(void)
     am_util_stdio_printf("UART Buffer\n\n");
 
 
+	uart_buff_send(1, (const uint8_t *)&ui8outData, AM_HAL_UART_WAIT_FOREVER);
+
+
     //
     // Loop forever while sleeping.
     //
@@ -255,7 +259,7 @@ main(void)
 			for(int i=0; i < ui32NumBytesRead; i++)
 				am_util_stdio_printf("%c ",ui8inData[i]);
 			am_util_stdio_printf("\n");
-
+			am_util_delay_ms(500);
 			uart_buff_send(ui32NumBytesRead, ui8inData, AM_HAL_UART_WAIT_FOREVER);
 		}
 		//
